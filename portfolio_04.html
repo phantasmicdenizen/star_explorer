@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Star Explorer</title>
+        
+        <!-- STYLE SHEET STYLE SHEET STYLE SHEET-->
+        <style>
+            /* Background color*/
+            body{
+                background-color: black;
+                margin: 0;
+            }
+
+            /*Full page container - Hull*/
+            .hull{
+                background-image: url("/ShipElements/ShipHull.png");
+                background-position: top center;
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                margin: 0;
+                height: 100vh;
+                display: flex;
+                flex-flow: column nowrap;
+                justify-content: flex-end;
+                align-items: center;
+            }
+
+            /* Page split containers - Upper and Lower*/
+            .upper{
+                margin: 0;
+                width: 100vw; 
+                display: flex;
+                flex-flow: row nowrap;
+                flex-grow: 1;
+            }
+
+            .lower{
+                background-image: url("/ShipElements/ConsoleBack.png");
+                background-position: bottom center;
+                background-size: 100% 408px;
+                background-repeat: no-repeat;
+                margin: 0;
+                width: 100vw;
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: flex-end;
+                justify-content: center;
+            }
+            
+            /* Upper screen elements - TargSys and Radio */
+
+            .targsys{
+                margin: 0;
+                height: 170px;
+                width: 50%;
+                align-self: flex-start;
+                display: flex;
+                justify-content: flex-end;
+            }
+
+            .targsys img{
+                height: 100%;
+                margin: 0;
+                padding-right: 160px;
+            }
+
+            .radio{
+                margin: 0;
+                height: 100px;
+                width: 50%;
+                align-self: flex-end;
+                display: flex;
+                justify-content: flex-start;
+            }
+
+            .radio img{
+                height: 100%;
+                margin: 0;
+                padding-left: 120px;
+            }
+
+            /* Lower screen elements - Consoles */
+
+            .leftconsole{
+                background-image: url("ShipElements/LeftConsole.png");
+                background-position: bottom right;
+                background-size: 200px 410px;
+                background-repeat: no-repeat;
+                margin: 0;
+                height: 410px; 
+                width: 200px;  
+                flex: 1
+            }
+
+            .centerconsole{
+                background-image: url("ShipElements/CenterConsole.png");
+                background-position: bottom center;
+                background-size: 948px 530px;
+                background-repeat: no-repeat;
+                margin: 0;
+                height: 530px;
+                width: 950px;
+                display: flex;
+                justify-content: center;    
+                align-items: flex-end; 
+            }
+
+            .rightconsole{
+                background-image: url("ShipElements/RightConsole.png");
+                background-position: bottom left;
+                background-size: 200px 410px;
+                background-repeat: no-repeat;
+                margin: 0;
+                height: 410px;
+                width: 200px;
+                flex: 1;
+            }
+
+            /* Interactive Elements - Navigations Panels and Computer Screen */
+
+            .leftnav{
+                height: 120px;
+                width: 135px;
+                margin: 0;
+                margin-bottom: 140px;
+                display: flex;
+                flex-flow: column nowrap;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .centerscreen{
+                height: 100%;
+                width: 530px;
+                margin: 0 24px 0 24px;
+            }
+
+            .computer{
+                width: 485px;
+                height: 345px;
+                margin: auto;
+                margin-top: 70px; 
+            }
+
+            .innerscreen{
+                overflow-y: scroll;
+                overflow-wrap: break-word;
+                color: white;
+                font-family: "Lucida Console", monospace;
+                font-size: 16px;
+                padding: 0px 10px 0px 10px;  
+            }
+
+            ::-webkit-scrollbar {
+            width: 5px;
+            }
+
+            ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 3px #848a44; 
+            border-radius: 5px;
+            }
+
+            ::-webkit-scrollbar-thumb {
+            background: white; 
+            border-radius: 5px;
+            }
+
+            .imgnav{
+                width: 100%;
+                height: 34px;
+                margin: 0;
+                margin-top: 34px;
+            }
+
+            .rightnav{
+                height: 245px;
+                width: 135px;
+                margin-bottom: 130px;
+                display: flex;
+                flex-flow: column nowrap;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* Right Nav Buttons */
+
+            .rbutton {
+                background-color: #bf5943;
+                border-color: #ab4d36;
+                border-width: 3px;
+                border-radius: 2px;
+                color: white;
+                font-family: "Lucida Console", monospace;
+                font-size: 18px;
+                cursor: pointer;
+                height: 35px;
+                width: 120px;
+                margin: 2px;
+            }
+
+            .rbutton:hover {
+                background-color: #c88d40;
+            }
+
+            /* Left Nav Buttons */
+
+             .lbutton {
+                background-color: #bf5943;
+                border-color: #ab4d36;
+                border-width: 3px;
+                border-radius: 2px;
+                color: white;
+                font-family: "Lucida Console", monospace;
+                font-size: 14px;
+                cursor: pointer;
+                height: 23px;
+                width: 120px;
+                margin: 2px;
+            }
+       
+            .lbutton:hover {
+                background-color: #c88d40;
+            }
+
+            /* Image navigations */
+            
+            .imgnav{
+                width: 100%;
+                height: 32px;
+                margin: 0;
+                margin-top: 46px;
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: center;
+                align-items: flex-start;
+            }
+
+            .imgnav img{
+                opacity: 0.8;
+                cursor: pointer;
+                height: 26px;
+                margin: 3px;
+            }
+
+            .imgnav img:hover{
+                opacity: 1;
+            } 
+            
+            #imgtext {
+                color: white;
+                font-size: 16px;
+                margin: auto;
+                font-family: "Lucida Console", monospace;
+            }
+
+             .innerscreen img{
+                margin: 0 auto 5px auto;
+                width: 85%;
+            }
+
+        </style>
+    </head>
+    <body>
+        <!-- Full page container - Hull -->
+        <div class="hull">
+            <!-- Upper half of the screen containing targeting system and radio.-->
+            <!-- <div class="upper">
+                <div class="targsys">
+                    <img src="/ShipElements/TargetingSys.png" alt="Targenting System">
+                </div>
+                <div class="radio">
+                    <img src="/ShipElements/Radio.png" alt="Radio">
+                </div>
+            </div> -->
+            <!-- Lower hald of the screen containing main 3 consoles.-->
+            <div class="lower">
+                <div class="leftconsole"></div>
+                <div class="centerconsole">
+                   <div class="leftnav">
+                        <button class="lbutton" onclick="document.location='portfolio_01.html'">WOODWORK</button>
+                        <button class="lbutton" onclick="document.location='portfolio_02.html'">ELECTRICS</button>
+                        <button disabled class="lbutton" onclick="document.location='portfolio_03.html'">PAINT</button>
+                        <button disabled class="lbutton" onclick="document.location='portfolio_04.html'">OTHER</button>
+                   </div>
+                    <div class="centerscreen">
+                        <div class="computer">
+                            <div class="innerscreen">
+                                <span onclick="this.parentElement.style.display='none'"></span>
+                                <img id="expandedImg">
+                                <div id="imgtext"></div>
+                            </div>
+                        </div>
+                        <div class="imgnav">
+                            <div> <img src="/ShipElements/TEST.png" alt="Text here Text here" onclick="myFunction(this);"> </div>
+                            <div> <img src="/ShipElements/TEST.png" alt="Text here Text here" onclick="myFunction(this);"> </div>
+                            <div> <img src="/ShipElements/TEST.png" alt="Text here Text here" onclick="myFunction(this);"> </div>
+                            <div> <img src="/ShipElements/TEST.png" alt="Text here Text here" onclick="myFunction(this);"> </div>
+                            <div> <img src="/ShipElements/TEST.png" alt="Text here Text here" onclick="myFunction(this);"> </div>
+                            <div> <img src="/ShipElements/TEST.png" alt="Text here Text here" onclick="myFunction(this);"> </div>
+                            <div> <img src="/ShipElements/TEST.png" alt="Text here Text here" onclick="myFunction(this);"> </div>
+                            <div> <img src="/ShipElements/TEST.png" alt="Text here Text here" onclick="myFunction(this);"> </div>
+                            <div> <img src="/ShipElements/TEST.png" alt="Text here Text here" onclick="myFunction(this);"> </div>
+                            <div> <img src="/ShipElements/TEST.png" alt="Text here Text here" onclick="myFunction(this);"> </div>
+                        </div>
+                    </div>
+                    <div class="rightnav">
+                        <button class="rbutton" onclick="document.location='index.html'">HOME</button>
+                        <button class="rbutton" onclick="document.location='about.html'">ABOUT</button>
+                        <button class="rbutton" onclick="document.location='portfolio_home.html'">PORTFOLIO</button>
+                        <button class="rbutton" onclick="document.location='contact.html'">CONTACT</button>
+                        <button class="rbutton" onclick="document.location='resume.html'">RESUME</button>
+                        <button class="rbutton" onclick="document.location='logs.html'">SHIP LOGS</button>
+                    </div>
+                </div>
+                <div class="rightconsole"></div>
+            </div>
+        </div>
+
+    <script>
+        function myFunction(imgs) {
+        var expandImg = document.getElementById("expandedImg");
+        var imgText = document.getElementById("imgtext");
+        expandImg.src = imgs.src;
+        imgText.innerHTML = imgs.alt;
+        expandImg.parentElement.style.display = "grid";
+        }
+    </script>
+
+
+    </body>
+</html>
